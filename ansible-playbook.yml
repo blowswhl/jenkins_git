@@ -1,9 +1,20 @@
 ---
-name: image pull node
-host:node
-become: true
-tasks: 
+- name: Install Nginx on all web servers
+  hosts: all
+  become: yes
 
-  takk:
-  name: image pull
-  shell: docker pull 
+  tasks:
+    - name: Update apt package index
+      apt:
+        update_cache: yes
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start and enable Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
