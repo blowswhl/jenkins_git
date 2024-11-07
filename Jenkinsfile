@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+ 	 ANSIBLE_SSH_ARGS = "-o StrictHostKeyChecking=no"
+    }
     stages {
         stage('Checkout') {
             steps {
