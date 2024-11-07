@@ -1,0 +1,9 @@
+---
+name: image pull node
+host:node
+become: true
+tasks: 
+
+  takk:
+  name: image pull
+  shell: docker pull 

@@ -1,0 +1,18 @@
+worker_processes auto;
+events {
+    worker_connections 1024;
+}
+
+http {
+    upstream backend {
+        server 211.183.3.101:80; 
+        server 211.183.3.102:80; 
+    }
+
+    server {
+        listen 80;
+        location / {
+            proxy_pass http://backend;
+        }
+    }
+}
