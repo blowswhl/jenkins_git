@@ -12,7 +12,7 @@ pipeline {
         stage('Copy Inventory to Master Node') {
             steps {
                 script {
-                    sh 'ansible -i /var/lib/jenkins/workspace/jenkins-github-webhook/inventory.ini loadbalancer -m copy -a "src=/home/user1/ansible/inventory.ini dest=/desired/path/ansible-inventory.ini"'
+                    sh 'ansible -i /var/lib/jenkins/workspace/jenkins-github-webhook/ansible-inventory.ini loadbalancer -m copy -a "src=/var/lib/jenkins/workspace/jenkins-github-webhook/ansible-inventory.ini dest=/home/user1/ansible/ansible-inventory.ini"'
                 }
             }
         }
