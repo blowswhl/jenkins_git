@@ -38,7 +38,7 @@ pipeline {
 	stage ('start ansible-play book') {
             steps {
 		 sh '''
-                 ansible-playbook -i  /var/lib/jenkins/workspace/jenkins-github-webhook/ansible-inventory.ini /home/user1/ansible/remote_ansible.yml
+                 ansible-playbook -i  /var/lib/jenkins/workspace/jenkins-github-webhook/ansible-inventory.ini /var/lib/jenkins/workspace/jenkins-github-webhook/remote_ansible.yml
 		 sh '''
 
 		}
