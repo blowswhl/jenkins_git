@@ -38,7 +38,7 @@ pipeline {
 	stage ('start ansible-play book') {
             steps {
 	    	script {
-                   sh 'ansible-playbook -i /var/lib/jenkins/workspace/jenkins-github-webhook/ansible-inventory.ini loadbalancer /home/user1/ansible/ansible-playbook.yml'
+                   sh 'ansible-playbook -i /var/lib/jenkins/workspace/jenkins-github-webhook/ansible-inventory.ini -l loadbalancer /home/user1/ansible/ansible-playbook.yml'
 
 		}
 
