@@ -38,7 +38,8 @@ pipeline {
 	stage ('start ansible-play book') {
             steps {
 	    	script {
-                   sh 'ansible loadbalancer -m shell -a "ansible-playbook /home/user1/ansible/ansible-playbook.yml" -i /var/lib/jenkins/workspace/jenkins-github-webhook/ansible-inventory.ini'
+                   sh 'ansible loadbalancer -m shell -a "export KUBECONFIG=/etc/kubernetes/admin.conf && ansible-playbook /home/user1/ansible/ansible-playbook.yml" -i /var/lib/jenkins/workspace/jenkins-github-webhook/ansible-inventory.ini'
+
 		   
 
 		}
