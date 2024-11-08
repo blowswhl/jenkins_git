@@ -19,5 +19,25 @@ pipeline {
                 }
             }
         }
+	stage ('push Docerfile') {
+	   #dockerfile build and push 
+	   steps {
+	       script {
+                   docker.build('blowswhl/cicdtest:latest')
+		   docker.image('blowswhl/cicdtest:latest').push() 
+
+	       }
+
+	   }
+
+	}
+
+	stage ('start ansible-play book') {
+            #master node ansible-play book start 
+
+	}
+
+
+
     }
 }
