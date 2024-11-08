@@ -1,6 +1,6 @@
 ---
 - name: Deploy Nginx on Kubernetes
-  hosts: localhost
+  hosts: all
   tasks:
     - name: Create Nginx deployment on Kubernetes
       k8s:

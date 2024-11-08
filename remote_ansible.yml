@@ -1,0 +1,8 @@
+---
+- name: Run Playbook on Master Node
+  hosts: loadbalancer
+  gather_facts: no
+  tasks:
+    - name: Run playbook on master node
+      ansible.builtin.command:
+        cmd: "ssh -o StrictHostKeyChecking=no user1@211.183.3.100 'ansible-playbook -i /home/user1/ansible/ansible-inventory.ini /home/user1/ansible/ansible-playbook.yml'"
