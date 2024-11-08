@@ -23,11 +23,11 @@ pipeline {
 	  //dockerfile build and push 
 	   steps {
 	       script {
-	         withCredentials([usernamePassword(credentialsId: 'Docker_login', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')
+	         withCredentials([usernamePassword(credentialsId: 'Docker_login', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
 		   sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD" 
 		   }
-		   def image = docker.build('blowswhl/cicdtest:latest')
-		   image.push()
+		   	def image = docker.build('blowswhl/cicdtest:latest')
+		   	image.push()
 
 	       }
 
