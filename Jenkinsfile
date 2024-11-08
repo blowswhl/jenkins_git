@@ -20,7 +20,7 @@ pipeline {
             }
         }
 	stage ('push Docerfile') {
-	   #dockerfile build and push 
+	  //dockerfile build and push 
 	   steps {
 	       script {
                    docker.build('blowswhl/cicdtest:latest')
@@ -33,7 +33,7 @@ pipeline {
 	}
 
 	stage ('start ansible-play book') {
-            #master node ansible-play book start 
+            //master node ansible-play book start 
 
 	}
 
