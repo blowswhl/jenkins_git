@@ -3,6 +3,8 @@
   hosts: loadbalancer
   tasks:
     - name: Create Nginx deployment on Kubernetes
+      environment:
+        KUBECONFIG: /etc/kubernetes/admin.conf
       k8s:
         state: present
         definition:
