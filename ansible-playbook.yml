@@ -1,6 +1,7 @@
 ---
 - name: Deploy Nginx on Kubernetes
   hosts: loadbalancer
+  become: yes
   tasks:
     - name: Create Nginx deployment on Kubernetes
       environment:
