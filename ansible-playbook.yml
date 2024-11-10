@@ -1,46 +1,59 @@
----
-- name: Deploy Nginx on Kubernetes
+- name: Create cicdtest deployment on Kubernetes
   hosts: loadbalancer
   tasks:
-    - name: Create Nginx deployment on Kubernetes
-      environment:
-        KUBECONFIG: /etc/kubernetes/admin.conf
+    - name: Create cicdtest namespace
       k8s:
+        kubeconfig: /etc/kubernetes/admin.conf
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: cicdtest
+
+    - name: Create cicdtest deployment
+      k8s:
+        kubeconfig: /etc/kubernetes/admin.conf
         state: present
         definition:
           apiVersion: apps/v1
           kind: Deployment
           metadata:
-            name: nginx-deployment
+            name: cicdtest-deployment
+            namespace: cicdtest  # cicdtest 네임스페이스에 배포
           spec:
             replicas: 2
             selector:
               matchLabels:
-                app: nginx
+                app: cicdtest
             template:
               metadata:
                 labels:
-                  app: nginx
+                  app: cicdtest
               spec:
                 containers:
-                  - name: nginx
-                    image: nginx:latest
+                  - name: cicdtest
+                    image: blowswhl/cicdtest:latest
                     ports:
                       - containerPort: 80
+                imagePullSecrets:
+                  - name: regcred
 
-    - name: Expose Nginx service as LoadBalancer
+    - name: Create cicdtest service
       k8s:
+        kubeconfig: /etc/kubernetes/admin.conf
         state: present
         definition:
           apiVersion: v1
           kind: Service
           metadata:
-            name: nginx-service
+            name: cicdtest-service
+            namespace: cicdtest  # cicdtest 네임스페이스에 서비스 배포
           spec:
             selector:
-              app: nginx
+              app: cicdtest
             ports:
               - protocol: TCP
                 port: 80
                 targetPort: 80
-            type: LoadBalancer
+            type: LoadBalancer  # LoadBalancer 타입으로 서비스 생성
