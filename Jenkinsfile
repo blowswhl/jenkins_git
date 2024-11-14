@@ -16,7 +16,8 @@ pipeline {
             steps {
                 script {
                     sh 'ansible -i /var/lib/jenkins/workspace/jenkins-github-webhook/ansible-inventory.ini loadbalancer -m copy -a "src=/var/lib/jenkins/workspace/jenkins-github-webhook/ansible-playbook.yml dest=/home/user1/ansible/ansible-playbook.yml"'
-                }
+            	
+	    	}
             }
         }
 	stage ('push Docerfile') {
